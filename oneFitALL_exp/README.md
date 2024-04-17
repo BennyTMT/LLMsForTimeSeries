@@ -2,10 +2,6 @@
 
 Tian Zhou, Peisong Niu, Xue Wang, Liang Sun, Rong Jin, "One Fits All: Power General Time Series Analysis by Pretrained LM,", NeurIPS, 2023. [[paper](https://arxiv.org/abs/2302.11939)]
 
-## Long-term Learning
-
-![image](../pic/long_term_result.png)
-
 ## Get Start
 
 - The code is the same as few-shot leanring with 100 percent.
