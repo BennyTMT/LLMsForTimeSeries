@@ -15,15 +15,3 @@ bash ./scripts/ETTh1.sh
 bash ./scripts/ETTh2.sh
 ```
 
-## Citation
-
-If you find this repo useful, please cite our paper. 
-
-```
-@inproceedings{zhou2023onefitsall,
-  title={{One Fits All}: Power General Time Series Analysis by Pretrained LM},
-  author={Tian Zhou, Peisong Niu, Xue Wang, Liang Sun, Rong Jin},
-  booktitle={NeurIPS},
-  year={2023}
-}
-```
