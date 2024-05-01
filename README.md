@@ -20,7 +20,7 @@ The Environment in these two eperiments is not complicated, just follow one of o
 
     sh scripts/long_term_forecasting/ETTm_GPT2.sh
     
-### For other datasets, such as traffi:
+### For other datasets, such as traffic:
    
     sh scripts/long_term_forecasting/traffic.sh 
 
