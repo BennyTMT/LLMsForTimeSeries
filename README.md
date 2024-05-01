@@ -4,6 +4,9 @@
 
 ### In this version, I did not clean up the code to preserve its original state during my runtim; this is to avoid removing any potential bugs that might be present in experiments (As shown in our meeting)
 
+## DataSet
+You can access the well pre-processed datasets from [Google Drive], then place the downloaded contents under ./dataset
+
 ## Setup Environment
 
 The Environment in these two eperiments is not complicated, just follow one of original repo, it will be fine.
