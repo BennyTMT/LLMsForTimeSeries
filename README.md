@@ -19,4 +19,6 @@ cd ./OFA
 
 ### For simple metheds, such as illness : 
 
-   bash  bash ./scripts/simple/illness.sh   
+   bash ./scripts/simple/illness.sh   
+### (Please change "itt" parameters in script, if you only want to test)
+
