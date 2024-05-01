@@ -8,6 +8,19 @@
 
 The Environment in these two eperiments is not complicated, just follow one of original repo, it will be fine.
 
+## Run LLaTA experiments
+cd ./LLaTA
+
+### For ETT experiments :
+
+    sh scripts/long_term_forecasting/ETTh_GPT2.sh
+
+    sh scripts/long_term_forecasting/ETTm_GPT2.sh
+    
+### For other datasets, such as traffi:
+   
+   sh scripts/long_term_forecasting/traffic.sh 
+   
 ## Run OFA experiments
 cd ./OFA
 
