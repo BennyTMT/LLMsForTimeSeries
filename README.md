@@ -9,7 +9,7 @@ cd ./OFA
 
 ### For ETT experiments :
    
-  bash ./scripts/ETTm_GPT2.sh   
+  bash ./scripts/ETTh_GPT2.sh   
   
   bash ./scripts/ETTm_GPT2.sh
   
