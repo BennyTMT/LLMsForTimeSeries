@@ -9,7 +9,7 @@
 The Environment in these two eperiments is not complicated, just follow one of original repo, it will be fine.
 
 ## Run LLaTA experiments
-cd ./LLaTA
+     cd ./LLaTA
 
 ### For ETT experiments :
 
@@ -19,10 +19,13 @@ cd ./LLaTA
     
 ### For other datasets, such as traffi:
    
-   sh scripts/long_term_forecasting/traffic.sh 
-   
+    sh scripts/long_term_forecasting/traffic.sh 
+
+### (Please change "itt" parameters in script, if you only want to test)
+
+
 ## Run OFA experiments
-cd ./OFA
+    cd ./OFA
 
 ### For ETT experiments :
    
