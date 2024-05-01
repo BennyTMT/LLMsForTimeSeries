@@ -29,21 +29,21 @@ The Environment in these two eperiments is not complicated, just follow one of o
 
 ### For ETT experiments :
    
-  bash ./scripts/ETTh_GPT2.sh   
+     bash ./scripts/ETTh_GPT2.sh   
   
-  bash ./scripts/ETTm_GPT2.sh
+     bash ./scripts/ETTm_GPT2.sh
   
 ### For other datasets, such as illness:
 
-    bash ./scripts/illness.sh 
+     bash ./scripts/illness.sh 
 
 ### For simple metheds, such as illness : 
 
-   bash ./scripts/simple/illness.sh  (for other dataset)
+     bash ./scripts/simple/illness.sh  (for other dataset)
 
-   bash ./scripts/ETTh_simple.sh (for ETTh)
+     bash ./scripts/ETTh_simple.sh (for ETTh)
 
-   bash ./scripts/ETTm_simple.sh (for ETTm)
+     bash ./scripts/ETTm_simple.sh (for ETTm)
    
 ### (Please change "itt" parameters in script, if you only want to test)
 
