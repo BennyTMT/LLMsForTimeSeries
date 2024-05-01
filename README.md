@@ -4,6 +4,10 @@
 
 ### In this version, I did not clean up the code to preserve its original state during my runtim; this is to avoid removing any potential bugs that might be present in experiments (As shown in our meeting)
 
+## Setup Environment
+
+The Environment in these two eperiments is not complicated, just follow one of original repo, it will be fine.
+
 ## Run OFA experiments
 cd ./OFA
 
