@@ -7,7 +7,11 @@
 ## Run OFA experiments
 1. cd OFA
 2. For ETT experiments :
+   
   bash ./scripts/ETTm_GPT2.sh   
+  
   bash ./scripts/ETTm_GPT2.sh
-3. For other datasets, such as illness :
+  
+4. For other datasets, such as illness :
+
     bash ./scripts/illness.sh 
