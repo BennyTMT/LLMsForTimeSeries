@@ -19,6 +19,11 @@ cd ./OFA
 
 ### For simple metheds, such as illness : 
 
-   bash ./scripts/simple/illness.sh   
+   bash ./scripts/simple/illness.sh  (for other dataset)
+
+   bash ./scripts/ETTh_simple.sh (for ETTh)
+
+   bash ./scripts/ETTm_simple.sh (for ETTm)
+   
 ### (Please change "itt" parameters in script, if you only want to test)
 
