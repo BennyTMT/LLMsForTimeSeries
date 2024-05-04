@@ -5,8 +5,8 @@ percent=100
 itt=5
 gpu_loc=1
 inp_len=512
-# main.py 
-run_file=eval_bs.py
+run_file=main.py 
+#run_file=eval_bs.py
 
 #   bash ./scripts/ETTm_GPT2.sh   
 # pre_lens_h="96 192 336 720"
