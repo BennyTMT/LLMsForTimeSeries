@@ -5,8 +5,8 @@ percent=100
 itt=5
 gpu_loc=0
 inp_len=336
-# run_file=main.py
-run_file=eval_bs.py
+run_file=main.py
+# run_file=eval_bs.py
 
 #   bash ./scripts/ETTh_GPT2.sh
 
