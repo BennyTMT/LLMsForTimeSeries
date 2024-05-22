@@ -1,8 +1,6 @@
 # TS_Models
 
-## Is LLM truly necessary in time series analysis?
-
-### In this version, I did not clean up the code to preserve its original state during my runtim; this is to avoid removing any potential bugs that might be present in experiments (As shown in our meeting)
+## Is LLM truly useful in time series analysis?
 
 ## DataSet
 You can access the well pre-processed datasets from [Google Drive](https://drive.google.com/file/d/1NF7VEefXCmXuWNbnNe858WvQAkJ_7wuP/view), then place the downloaded contents under ./dataset
