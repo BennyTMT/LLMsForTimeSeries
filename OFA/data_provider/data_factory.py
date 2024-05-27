@@ -1,8 +1,9 @@
-from data_provider.data_loader import Dataset_Custom, Dataset_Pred, Dataset_TSF, Dataset_ETT_hour, Dataset_ETT_minute
+from data_provider.data_loader import  Dataset_Pred, Dataset_TSF, Dataset_Custom_BS,  Dataset_ETT_hour, Dataset_ETT_minute
 from torch.utils.data import DataLoader
 
 data_dict = {
-    'custom': Dataset_Custom,
+    # 'custom': Dataset_Custom,
+    'custom': Dataset_Custom_BS,
     'tsf_data': Dataset_TSF,
     'ett_h': Dataset_ETT_hour,
     'ett_m': Dataset_ETT_minute,
@@ -36,7 +37,6 @@ def data_provider(args, flag, drop_last_test=True, train_all=False):
         freq = args.freq
         
     data_set = Data(
-        # train_ratio = args.train_ratio, 
         model_id=args.model_id , 
         root_path=args.root_path,
         data_path=args.data_path,
@@ -50,7 +50,6 @@ def data_provider(args, flag, drop_last_test=True, train_all=False):
         max_len=max_len,
         train_all=train_all
     )
-    print(flag, len(data_set))
     data_loader = DataLoader(
         data_set,
         batch_size=batch_size,

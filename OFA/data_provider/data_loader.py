@@ -16,7 +16,7 @@ import random
 
 warnings.filterwarnings('ignore')
 
-def decompose(
+def decompose( 
     x: torch.Tensor, period: int = 7
 ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
@@ -29,7 +29,10 @@ def decompose(
     Returns:
         Tuple[torch.Tensor, torch.Tensor, torch.Tensor]: Decomposed components. Shape: (1, seq_len).
     """
-    x = x.squeeze(0).cpu().numpy()
+    # print('in' , x.shape)
+    # x = x.squeeze(0).cpu().numpy()
+    if len(x.shape) ==2 : 
+        x = x.squeeze(0)
     decomposed = STL(x, period=period).fit()
     trend = decomposed.trend.astype(np.float32)
     seasonal = decomposed.seasonal.astype(np.float32)
@@ -39,7 +42,7 @@ def decompose(
         torch.from_numpy(seasonal).unsqueeze(0),
         torch.from_numpy(residual).unsqueeze(0),
     )
-
+    
 class Dataset_ETT_hour(Dataset):
     def __init__(self, root_path, flag='train', size=None,
                  features='S', data_path='ETTh1.csv',
@@ -84,7 +87,7 @@ class Dataset_ETT_hour(Dataset):
         print("self.enc_in = {}".format(self.enc_in))
         print("self.data_x = {}".format(self.data_x.shape))
         self.tot_len = len(self.data_x) - self.seq_len - self.pred_len + 1
-
+        
     def draw_decompose(self, x , trend, seasonal, residual):
         plt.figure(figsize=(10, 6))  # Optional: Specifies the figure size
         # Plot each array
@@ -119,6 +122,7 @@ class Dataset_ETT_hour(Dataset):
         
         if self.set_type == 0:
             border2 = (border2 - self.seq_len) * self.percent // 100 + self.seq_len
+            
 
         if self.features == 'M' or self.features == 'MS':
             cols_data = df_raw.columns[1:]
@@ -132,7 +136,7 @@ class Dataset_ETT_hour(Dataset):
             data = self.scaler.transform(df_data.values)
         else:
             data = df_data.values
-
+        
         df_stamp = df_raw[['date']][border1:border2]
         df_stamp['date'] = pd.to_datetime(df_stamp.date)
         if self.timeenc == 0:
@@ -144,7 +148,7 @@ class Dataset_ETT_hour(Dataset):
         elif self.timeenc == 1:
             data_stamp = time_features(pd.to_datetime(df_stamp['date'].values), freq=self.freq)
             data_stamp = data_stamp.transpose(1, 0)
-
+        
         # (17420, 7) 
         # print(data.shape)
         
@@ -152,7 +156,7 @@ class Dataset_ETT_hour(Dataset):
         self.data_y = data[border1:border2]
         self.data_stamp = data_stamp
 
-        print(self.set_type , len(self.data_x))
+        print(self.set_type ,self.data_x.shape)
                 
     def __getitem__(self, index):
         
@@ -174,7 +178,7 @@ class Dataset_ETT_hour(Dataset):
             y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [7, pred_len]
             components= []
             for i in range(self.channel):
-                (trend, seasonal, residual) = decompose(x[i:i+1] , period=self.period)
+                (trend, seasonal, residual) = decompose(x[i] , period=self.period)
                 component = torch.concat([trend, seasonal, residual], dim=0)  # [3, seq_len]
                 components.append(component)
             components = torch.stack(components)
@@ -209,7 +213,6 @@ class Dataset_ETT_hour(Dataset):
             
             x = torch.tensor(seq_x, dtype=torch.float).transpose(1, 0)  # [1, seq_len]
             y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [1, pred_len]
-
             (trend, seasonal, residual) = decompose(x , period=self.period)
             # self.draw_decompose(x.numpy() , trend.numpy(), seasonal.numpy(), residual.numpy())
             component = torch.concat([trend, seasonal, residual], dim=0)  # [3, seq_len]
@@ -280,16 +283,16 @@ class Dataset_ETT_minute(Dataset):
         self.data_path = data_path
         self.__read_data__()
 
-        self.enc_in = self.data_x.shape[-1]
-        self.tot_len = len(self.data_x) - self.seq_len - self.pred_len + 1
-
         self.model_id = model_id 
         self.period = 60 
         self.channel= 7
         if 'multi' in self.model_id:
             self.enc_in =1 
         else : 
+            # ofa and single
             self.enc_in = self.data_x.shape[-1]
+
+        self.tot_len = (len(self.data_x) - self.seq_len - self.pred_len + 1)
         
     def __read_data__(self):
         self.scaler = StandardScaler()
@@ -315,7 +318,6 @@ class Dataset_ETT_minute(Dataset):
             data = self.scaler.transform(df_data.values)
         else:
             data = df_data.values
-
         df_stamp = df_raw[['date']][border1:border2]
         df_stamp['date'] = pd.to_datetime(df_stamp.date)
         if self.timeenc == 0:
@@ -425,13 +427,11 @@ class Dataset_ETT_minute(Dataset):
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
 
-class Dataset_Custom(Dataset):
+class Dataset_Custom_Decp_ALL(Dataset):
     def __init__(self, root_path, flag='train', size=None,
                  features='S', data_path='ETTh1.csv',
                  target='OT', scale=True, timeenc=0, freq='h',
                  percent=10, max_len=-1, train_all=False , train_ratio=1.0 , model_id=''):
-        # size [seq_len, label_len, pred_len]
-        # info
         if size == None:
             self.seq_len = 24 * 4 * 4
             self.label_len = 24 * 4
@@ -440,7 +440,6 @@ class Dataset_Custom(Dataset):
             self.seq_len = size[0]
             self.label_len = size[1]
             self.pred_len = size[2]
-        # init
         assert flag in ['train', 'test', 'val']
         type_map = {'train': 0, 'val': 1, 'test': 2}
         self.set_type = type_map[flag]
@@ -454,13 +453,10 @@ class Dataset_Custom(Dataset):
         self.model_id= model_id
         self.root_path = root_path
         self.data_path = data_path
-        self.__read_data__()
-        self.enc_in = self.data_x.shape[-1]
-        self.tot_len = len(self.data_x) - self.seq_len - self.pred_len + 1
 
         if 'weather' in data_path:
             # per 10min
-            self.period = 24
+            self.period = 36
             self.channel= 21
         if 'traffic' in data_path:
             # per hour 
@@ -474,7 +470,15 @@ class Dataset_Custom(Dataset):
             # 1week
             self.period = 12
             self.channel= 7
-                     
+            
+        self.__read_data__()
+        if 'multi' in self.model_id :
+            self.enc_in = 1
+        else:
+            self.enc_in = self.channel
+            
+        self.tot_len = (self.data_len - self.seq_len - self.pred_len + 1)
+
     def __read_data__(self):
         self.scaler = StandardScaler()
         df_raw = pd.read_csv(os.path.join(self.root_path,
@@ -526,36 +530,44 @@ class Dataset_Custom(Dataset):
 
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
+        self.data_len = len(self.data_x)
         self.data_stamp = data_stamp
-        print(len(self.data_x))
         
+        assert self.data_x.shape[1] == self.channel
+        print(self.data_x.shape , self.data_y.shape)
+        if  'decp' in self.model_id: 
+            components = []
+            for j in range(self.data_x.shape[1]):
+                # (36887,)
+                x= self.data_x[:,j]
+                (trend, seasonal, residual) = decompose( x , period=self.period)
+                # (3,36887)
+                channel_x = torch.concat([trend, seasonal, residual], dim=0)  # [3, seq_len]
+                components.append(channel_x)
+            # [21 , 3  , 36887]
+            self.data_x = torch.stack(components)
+            print('decp'  , self.data_x.shape )
+
     def __getitem__(self, index):
         '''
             single_linr         multi_decp_trsf     single_linr_decp 
             multi_linr_trsf     multi_patch_attn    multi_patch_decp
-
         '''
         if 'multi' in self.model_id and 'decp' in self.model_id:
-            exit()
             feat_id = index // self.tot_len
             s_begin = index % self.tot_len
             s_end = s_begin + self.seq_len
             r_begin = s_end - self.label_len
             r_end = r_begin + self.label_len + self.pred_len
-            seq_x = self.data_x[s_begin:s_end]
+            seq_x = self.data_x[:,:,s_begin:s_end]
             seq_y = self.data_y[r_begin:r_end]
             seq_x_mark = self.data_stamp[s_begin:s_end]
             seq_y_mark = self.data_stamp[r_begin:r_end]
-            x = torch.tensor(seq_x, dtype=torch.float).transpose(1, 0)  # [7, seq_len]
-            y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [7, pred_len]
-            components= []
-            for i in range(x.shape[0]):
-                (trend, seasonal, residual) = decompose(x[i:i+1] , period=self.period)
-                component = torch.concat([trend, seasonal, residual], dim=0)  # [3, seq_len]
-                components.append(component)
-            components = torch.stack(components)
-            # [batch , 7 , 3 , seq_len ]
-            return components , y  , seq_x_mark, seq_y_mark
+            # x = torch.tensor(seq_x, dtype=torch.float).permute(1, 2, 0)  # [c, seq_len]
+            y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [c, pred_len]
+            # [ Channel , 3 , seq_len ] 21, 3, 512
+            return seq_x, y ,  seq_x_mark, seq_y_mark
+            
         elif 'multi' in self.model_id and ('decp'  not in self.model_id): 
             feat_id = index // self.tot_len
             s_begin = index % self.tot_len
@@ -577,19 +589,18 @@ class Dataset_Custom(Dataset):
             r_begin = s_end - self.label_len
             
             r_end = r_begin + self.label_len + self.pred_len
-            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
-            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
+            
+            # [21, 3, 36887]
+            seq_x = self.data_x[feat_id ,:, s_begin:s_end] # [3, seq_len]
+            # (36887, 21)
+            seq_y = self.data_y[r_begin:r_end , feat_id:feat_id+1]  # [seq_len , 1]
+            seq_y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [1, seq_len]
             
             seq_x_mark = self.data_stamp[s_begin:s_end]
             seq_y_mark = self.data_stamp[r_begin:r_end]
-            
-            x = torch.tensor(seq_x, dtype=torch.float).transpose(1, 0)  # [1, seq_len]
-            y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [1, pred_len]
+            #      [3, seq_len]  [1, seq_len]
+            return seq_x        , seq_y  , seq_x_mark, seq_y_mark
 
-            (trend, seasonal, residual) = decompose(x , period=self.period)
-            # self.draw_decompose(x.numpy() , trend.numpy(), seasonal.numpy(), residual.numpy())
-            component = torch.concat([trend, seasonal, residual], dim=0)  # [3, seq_len]
-            return component , y  , seq_x_mark, seq_y_mark
         elif 'single' in self.model_id and  'decp' not in self.model_id: 
             feat_id = index // self.tot_len
             s_begin = index % self.tot_len
@@ -599,10 +610,11 @@ class Dataset_Custom(Dataset):
             r_end = r_begin + self.label_len + self.pred_len
             seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
             seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
-            seq_x_mark = self.data_stamp[s_begin:s_end]
-            seq_y_mark = self.data_stamp[r_begin:r_end]
             x = torch.tensor(seq_x, dtype=torch.float).transpose(1, 0)  # [1, seq_len]
             y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [1, pred_len]
+                        
+            seq_x_mark = self.data_stamp[s_begin:s_end]
+            seq_y_mark = self.data_stamp[r_begin:r_end]
             
             return x, y, seq_x_mark, seq_y_mark
 
@@ -622,12 +634,224 @@ class Dataset_Custom(Dataset):
 
     def __len__(self):
         # print(len(self.data_x) ,   self.seq_len , self.pred_len  )
+        return (self.data_len - self.seq_len - self.pred_len + 1) * self.enc_in
+
+    def inverse_transform(self, data):
+        return self.scaler.inverse_transform(data)
+
+class Dataset_Custom_BS(Dataset):
+    def __init__(self, root_path, flag='train', size=None,
+                 features='S', data_path='ETTh1.csv',
+                 target='OT', scale=True, timeenc=0, freq='h',
+                 percent=10, max_len=-1, train_all=False , train_ratio=1.0 , model_id=''):
+
+        if size == None:
+            self.seq_len = 24 * 4 * 4
+            self.label_len = 24 * 4
+            self.pred_len = 24 * 4
+        else:
+            self.seq_len = size[0]
+            self.label_len = size[1]
+            self.pred_len = size[2]
+        # init
+        assert flag in ['train', 'test', 'val']
+        type_map = {'train': 0, 'val': 1, 'test': 2}
+        self.set_type = type_map[flag]
+
+        self.features = features
+        self.target = target
+        self.scale = scale
+        self.timeenc = timeenc
+        self.freq = freq
+        self.percent = percent
+        self.model_id= model_id
+        self.root_path = root_path
+        self.data_path = data_path
+        self.__read_data__()
+        
+        self.tot_len = len(self.data_x) - self.seq_len - self.pred_len + 1
+
+        if 'weather' in data_path:
+            # per 10min
+            self.period = 36
+            self.channel= 21
+        if 'traffic' in data_path:
+            # per hour 
+            self.period = 24
+            self.channel= 862
+        if 'electricity' in data_path:
+            # per hour 
+            self.period = 24
+            self.channel= 321
+        if 'illness' in data_path:
+            # 1week
+            self.period = 12
+            self.channel= 7
+
+        if 'multi' in self.model_id:
+            self.enc_in = 1 
+        else : 
+            self.enc_in = self.data_x.shape[-1]
+            assert self.enc_in == self.channel
+            
+    def __read_data__(self):
+        self.scaler = StandardScaler()
+        df_raw = pd.read_csv(os.path.join(self.root_path,
+                                          self.data_path))
+        
+        cols = list(df_raw.columns)
+        cols.remove(self.target)
+        cols.remove('date')
+        df_raw = df_raw[['date'] + cols + [self.target]]
+        # print(cols)
+        num_train = int(len(df_raw) * 0.7)
+        num_test = int(len(df_raw) * 0.2)
+        num_vali = len(df_raw) - num_train - num_test
+        border1s = [0, num_train - self.seq_len, len(df_raw) - num_test - self.seq_len]
+        border2s = [num_train, num_train + num_vali, len(df_raw)]
+        border1 = border1s[self.set_type]
+        border2 = border2s[self.set_type]
+        
+        if self.set_type == 0:
+            border2 = (border2 - self.seq_len) * self.percent // 100 + self.seq_len
+
+        if self.features == 'M' or self.features == 'MS':
+            cols_data = df_raw.columns[1:]
+            df_data = df_raw[cols_data]
+        elif self.features == 'S':
+            df_data = df_raw[[self.target]]
+
+        if self.scale:
+            train_data = df_data[border1s[0]:border2s[0]]
+            self.scaler.fit(train_data.values)
+            data = self.scaler.transform(df_data.values)
+        else:
+            data = df_data.values
+
+        df_stamp = df_raw[['date']][border1:border2]
+        df_stamp['date'] = pd.to_datetime(df_stamp.date)
+        if self.timeenc == 0:
+            df_stamp['month'] = df_stamp.date.apply(lambda row: row.month, 1)
+            df_stamp['day'] = df_stamp.date.apply(lambda row: row.day, 1)
+            df_stamp['weekday'] = df_stamp.date.apply(lambda row: row.weekday(), 1)
+            df_stamp['hour'] = df_stamp.date.apply(lambda row: row.hour, 1)
+            data_stamp = df_stamp.drop(['date'], 1).values
+        elif self.timeenc == 1:
+            data_stamp = time_features(pd.to_datetime(df_stamp['date'].values), freq=self.freq)
+            data_stamp = data_stamp.transpose(1, 0)
+
+        self.data_x = data[border1:border2]
+        self.data_y = data[border1:border2]
+        self.data_stamp = data_stamp
+        print(self.data_x.shape)
+        
+    def __getitem__(self, index):
+        if 'multi' in self.model_id and 'decp' in self.model_id:
+            feat_id = index // self.tot_len
+            s_begin = index % self.tot_len
+            s_end = s_begin + self.seq_len
+            r_begin = s_end - self.label_len
+            r_end = r_begin + self.label_len + self.pred_len
+            seq_x = self.data_x[s_begin:s_end]
+            seq_y = self.data_y[r_begin:r_end]
+            seq_x_mark = self.data_stamp[s_begin:s_end]
+            seq_y_mark = self.data_stamp[r_begin:r_end]
+            
+            x = torch.tensor(seq_x, dtype=torch.float)# [seq_len  , 7 ]
+            y = torch.tensor(seq_y, dtype=torch.float)# [pred_len , 7 ]
+            
+            '''
+                x = torch.tensor(seq_x, dtype=torch.float).transpose(1, 0)  # [7, seq_len]
+                y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [7, pred_len]
+                components= []
+                for i in range(x.shape[0]):
+                    (trend, seasonal, residual) = decompose(x[i] , period=self.period)
+                    component = torch.concat([trend, seasonal, residual], dim=0)  # [3, seq_len]
+                    components.append(component)
+                components = torch.stack(components)
+                # [batch , 7 , 3 , seq_len ]
+                return components , y  , seq_x_mark, seq_y_mark
+            '''
+            # [batch , 7 ,  seq_len ]
+            return x , y  , seq_x_mark, seq_y_mark
+            
+        elif 'multi' in self.model_id and ('decp'  not in self.model_id): 
+            feat_id = index // self.tot_len
+            s_begin = index % self.tot_len
+            s_end = s_begin + self.seq_len
+            r_begin = s_end - self.label_len
+            r_end = r_begin + self.label_len + self.pred_len
+            seq_x = self.data_x[s_begin:s_end]
+            seq_y = self.data_y[r_begin:r_end]
+            seq_x_mark = self.data_stamp[s_begin:s_end]
+            seq_y_mark = self.data_stamp[r_begin:r_end]
+            x = torch.tensor(seq_x, dtype=torch.float).transpose(1, 0)  # [7, seq_len]
+            y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [7, pred_len]
+            return x , y ,  seq_x_mark, seq_y_mark
+
+        elif 'single' in self.model_id and  'decp' in self.model_id: 
+            feat_id = index // self.tot_len
+            s_begin = index % self.tot_len
+            
+            s_end = s_begin + self.seq_len
+            r_begin = s_end - self.label_len
+            
+            r_end = r_begin + self.label_len + self.pred_len
+            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
+            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
+            
+            seq_x_mark = self.data_stamp[s_begin:s_end]
+            seq_y_mark = self.data_stamp[r_begin:r_end]
+            
+            x = torch.tensor(seq_x, dtype=torch.float) # [seq_len , 1 ]
+            y = torch.tensor(seq_y, dtype=torch.float) # [pred_len, 1 ]
+            
+            # x = torch.tensor(seq_x, dtype=torch.float).transpose(1, 0)  # [1, seq_len]
+            # y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [1, pred_len]
+
+            # (trend, seasonal, residual) = decompose(x , period=self.period)
+            # component = torch.concat([trend, seasonal, residual], dim=0)  # [3, seq_len]
+            # return component , y  , seq_x_mark, seq_y_mark
+            
+            return x ,  y  , seq_x_mark, seq_y_mark
+
+        elif 'single' in self.model_id and  'decp' not in self.model_id: 
+            feat_id = index // self.tot_len
+            s_begin = index % self.tot_len
+            
+            s_end = s_begin + self.seq_len
+            r_begin = s_end - self.label_len
+            r_end = r_begin + self.label_len + self.pred_len
+            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
+            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
+            seq_x_mark = self.data_stamp[s_begin:s_end]
+            seq_y_mark = self.data_stamp[r_begin:r_end]
+            x = torch.tensor(seq_x, dtype=torch.float).transpose(1, 0)  # [1, seq_len]
+            y = torch.tensor(seq_y, dtype=torch.float).transpose(1, 0)  # [1, pred_len]
+
+            # [batch, 1, seq_len ]
+            return x, y, seq_x_mark, seq_y_mark
+
+        elif 'ofa' in  self.model_id :
+            feat_id = index // self.tot_len
+            s_begin = index % self.tot_len
+            
+            s_end = s_begin + self.seq_len
+            r_begin = s_end - self.label_len
+            r_end = r_begin + self.label_len + self.pred_len
+            seq_x = self.data_x[s_begin:s_end, feat_id:feat_id+1]
+            seq_y = self.data_y[r_begin:r_end, feat_id:feat_id+1]
+            seq_x_mark = self.data_stamp[s_begin:s_end]
+            seq_y_mark = self.data_stamp[r_begin:r_end]
+            
+            return seq_x, seq_y, seq_x_mark, seq_y_mark
+
+    def __len__(self):
         return (len(self.data_x) - self.seq_len - self.pred_len + 1) * self.enc_in
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
     
-
 class Dataset_Pred(Dataset):
     def __init__(self, root_path, flag='pred', size=None,
                  features='S', data_path='ETTh1.csv',
@@ -729,11 +953,10 @@ class Dataset_Pred(Dataset):
         return seq_x, seq_y, seq_x_mark, seq_y_mark
 
     def __len__(self):
-        return len(self.data_x) - self.seq_len + 1
+        return (len(self.data_x) - self.seq_len + 1) 
 
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
-
 
 class Dataset_TSF(Dataset):
     def __init__(self, root_path, flag='train', size=None,
