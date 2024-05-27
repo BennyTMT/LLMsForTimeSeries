@@ -188,11 +188,7 @@ for ii in range(args.itr):
         criterion = nn.MSELoss()
     else : 
         criterion = nn.L1Loss()
-    '''
-        Note : 
-        Original Repo use l2 loss, but I can not reach paper`s results with it 
-        when I change it to l1 loss, it does. And LLaTA uses l1 as well. 
-    '''
+
     criterion = nn.L1Loss()
     
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(model_optim, T_max=args.tmax, eta_min=1e-8)
