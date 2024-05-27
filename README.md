@@ -38,14 +38,6 @@ The Environment in these two eperiments is not complicated, just follow one of o
 
      bash ./scripts/illness.sh 
 
-### For simple metheds, such as illness : 
-
-     bash ./scripts/simple/illness.sh  (for other dataset)
-
-     bash ./scripts/ETTh_simple.sh (for ETTh)
-
-     bash ./scripts/ETTm_simple.sh (for ETTm)
-
 ## Run Time-LLM exepriments experiments
      cd ./Time-LLM-exp
 
@@ -67,4 +59,18 @@ The Environment in these two eperiments is not complicated, just follow one of o
 
 
 ### (Please change "itt" parameters in script, if you only want to test)
+
+
+## For "simple metheds" : 
+     
+     bash ./scripts/simple/ETTh_simple.sh (for ETTh)
+
+     bash ./scripts/simple/ETTm_simple.sh (for ETTm)
+     
+### simple methods, other dataset, for example Weather
+
+     bash ./scripts/simple/weather.sh 
+
+## Note that, the method and in script, "multi_patch_attn", means "PAttn". And the mehtod name, "multi_linr_trsf", means "LTrsf"
+     
 
