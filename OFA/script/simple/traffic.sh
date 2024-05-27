@@ -1,16 +1,13 @@
 export CUDA_VISIBLE_DEVICES="0,1,2"
 seq_len=512
-
- 
 percent=100
-
-gpu_loc=0
-#    bash ./scripts/simple/traffic.sh   04 
-
-model=DLinear_plus
 filename=traffic_simple.txt 
+
+gpu_loc=1
+tag_file=main.py
+methods_h='multi_linr_trsf multi_patch_attn'
+model=DLinear_plus
 pre_lens_h="96 192 336 720"
-methods_h='single_linr multi_decp_trsf single_linr_decp multi_linr_trsf multi_patch_attn multi_patch_decp'
 for pred_len in $pre_lens_h;
 do
 for method in $methods_h;
@@ -23,9 +20,9 @@ fi
 if echo "$method" | grep -q "single"; then
   bs=8192
 else
-  bs=16
+  bs=32
 fi
-python main.py \
+python $tag_file \
     --root_path ./datasets/traffic/ \
     --data_path traffic.csv \
     --model_id 'traffic_'$seq_len'_'$pred_len'_'$method \

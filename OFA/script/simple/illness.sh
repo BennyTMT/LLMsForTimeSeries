@@ -3,12 +3,13 @@ export CUDA_VISIBLE_DEVICES="0,1,2"
 seq_len=104
 percent=100
 gpu_loc=0 
-
-#   bash ./scripts/simple/illness.sh   
 model=DLinear_plus
+
+tag_file=main.py
+methods_h='multi_linr_trsf multi_patch_attn'
+
 filename=Illness_simple.txt 
 pre_lens_h="24 36 48 60"
-methods_h='single_linr multi_decp_trsf single_linr_decp multi_linr_trsf multi_patch_attn multi_patch_decp'
 for pred_len in $pre_lens_h;
 do
 for method in $methods_h;
@@ -23,8 +24,7 @@ if echo "$method" | grep -q "single"; then
 else
   bs=8
 fi
-echo $bs"_"$lr"_"$method
-python main.py \
+python $tag_file\
     --root_path ./datasets/illness/ \
     --data_path national_illness.csv \
     --model_id 'Illness_'$seq_len'_'$pred_len'_'$method \
@@ -46,7 +46,7 @@ python main.py \
     --all 1 \
     --percent $percent \
     --gpt_layer 6 \
-    --itr 2 \
+    --itr 1 \
     --model $model \
     --is_gpt 1 \
     --gpu_loc $gpu_loc \

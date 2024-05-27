@@ -1,15 +1,13 @@
-export CUDA_VISIBLE_DEVICES="0,1"
-
+export CUDA_VISIBLE_DEVICES="0,1,2,3"
 seq_len=512
 percent=100
-gpu_loc=1
+gpu_loc=2
+filename=weather_simple.txt 
+methods_h='multi_linr_trsf multi_patch_attn'
 
-#    bash ./scripts/simple/weather.sh 
-# 96 192 336 
 model=DLinear_plus
-filename=weather_simple1.txt 
-pre_lens_h="96 192 336 720"
-methods_h='single_linr multi_decp_trsf single_linr_decp multi_linr_trsf multi_patch_attn multi_patch_decp'
+pre_lens_h='96 192 336 720'
+
 for pred_len in $pre_lens_h;
 do
 for method in $methods_h;
@@ -20,11 +18,11 @@ else
   lr=0.00005
 fi
 if echo "$method" | grep -q "single"; then
-  bs=1024
+  bs=4096
 else
-  bs=128
+  bs=256
 fi
-python main.py \
+python $tag_file \
     --root_path ./datasets/weather/ \
     --data_path weather.csv \
     --model_id 'weather_'$seq_len'_'$pred_len'_'$method \

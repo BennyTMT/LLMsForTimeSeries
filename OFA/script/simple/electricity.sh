@@ -3,13 +3,14 @@ export CUDA_VISIBLE_DEVICES="0,1,2"
 seq_len=512
 model=DLinear_plus
 
-gpu_loc=2
+gpu_loc=0
 percent=100
 
-#         bash ./scripts/simple/electricity.sh  05 
-filename=Electricity_simple.txt 
-pre_lens_h="96 192 336 720"
-methods_h='single_linr multi_decp_trsf single_linr_decp multi_linr_trsf multi_patch_attn multi_patch_decp'
+methods_h='multi_linr_trsf multi_patch_attn'
+
+pre_lens_h='96 192 336 720'
+filename=Electricity
+
 for pred_len in $pre_lens_h;
 do
 for method in $methods_h;
@@ -20,12 +21,11 @@ else
   lr=0.00005
 fi
 if echo "$method" | grep -q "single"; then
-  bs=2048
+  bs=4096
 else
-  bs=8
+  bs=16
 fi
-echo $bs"_"$lr"_"$method
-python main.py \
+python $tag_file \
     --root_path ./datasets/electricity/ \
     --data_path electricity.csv \
     --model_id 'Electricity_'$seq_len'_'$pred_len'_'$method \
