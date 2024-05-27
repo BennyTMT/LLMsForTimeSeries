@@ -7,11 +7,7 @@ from models.DLinear import DLinear
 from models.NLinear import NLinear
 from models.DLinear_plus import DLinearPlus
 
-'''
 
-    cd /p/selfdrivingpj/projects_time/NeurIPS2023-One-Fits-All/Long-term_Forecasting ;  conda activate  llm 
-    
-''' 
     
 import numpy as np
 import torch
