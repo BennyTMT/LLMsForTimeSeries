@@ -45,6 +45,26 @@ The Environment in these two eperiments is not complicated, just follow one of o
      bash ./scripts/ETTh_simple.sh (for ETTh)
 
      bash ./scripts/ETTm_simple.sh (for ETTm)
-   
+
+## Run Time-LLM exepriments experiments
+     cd ./Time-LLM-exp
+
+### For ETT datasets 
+
+     bash ./scripts/train_script/TimeLLM_ETTh1.sh
+     bash ./scripts/train_script/TimeLLM_ETTh2.sh 
+     bash ./scripts/train_script/TimeLLM_ETTm1.sh 
+     bash ./scripts/train_script/TimeLLM_ETTm2.sh 
+     
+### For other datasets
+
+     bash ./scripts/train_script/TimeLLM_Weather.sh
+     bash ./scripts/train_script/TimeLLM_Traffic.sh
+     bash ./scripts/train_script/TimeLLM_ECL.sh
+     bash ./scripts/train_script/illness.sh
+
+### The original script saved in ./scripts/train_script/train_ori/
+
+
 ### (Please change "itt" parameters in script, if you only want to test)
 
