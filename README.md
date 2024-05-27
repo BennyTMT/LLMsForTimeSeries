@@ -1,4 +1,4 @@
-# TS_Models
+# LLM for Time Series Ablation Methods
 
 ## Is LLM truly useful in time series analysis?
 
