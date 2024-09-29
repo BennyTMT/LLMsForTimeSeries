@@ -61,16 +61,20 @@ Three different popular LLM-based TSF methods were included in our ablation appr
 
 #### (To run ablations on other datasets, please change the dataset name as shown in example.)
 
-     
+## Acknowledgement
+
+This codebase is built based on the [Time-Series-Library](https://github.com/thuml/Time-Series-Library). Thanks!
+
+
 ## Citation
 If you find our work useful, please cite:
 ```bibtex
-@misc{tan2024languagemodelsactuallyuseful,
-      title={Are Language Models Actually Useful for Time Series Forecasting?}, 
-      author={Mingtian Tan and Mike A. Merrill and Vinayak Gupta and Tim Althoff and Thomas Hartvigsen},
-      year={2024},
-      eprint={2406.16964},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2406.16964}, 
+@article{tan2024useful,
+  title={Are Language Models Actually Useful for Time Series Forecasting?},
+  author={Tan, Mingtian and Merrill, Mike A. and Gupta, Vinayak and Althoff, Tim and Hartvigsen, Thomas},
+  conference={NeurIPS 2024},
+  url={https://arxiv.org/pdf/2406.16964},
+  year={2024}
 }
+
+
