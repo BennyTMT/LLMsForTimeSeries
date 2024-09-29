@@ -24,14 +24,13 @@ Three different popular LLM-based TSF methods were included in our ablation appr
 
 
 ## PAttn: 
-     bash ./scripts/simple/ETTh_simple.sh (for ETTh)
-     bash ./scripts/simple/ETTm_simple.sh (for ETTm)
+     cd ./PAttn 
+
+     bash ./scripts/ETTh.sh (for ETTh1 & ETTh2)
+     bash ./scripts/ETTm.sh (for ETTm1 & ETTm2)
+     bash ./scripts/weather.sh (for Weather)
      
-### simple methods, other dataset, for example Weather
-
-     bash ./scripts/simple/weather.sh 
-
-####  Note that, the method and in script, "multi_patch_attn", means "PAttn". And the mehtod name, "multi_linr_trsf", means "LTrsf"
+#### For other datasets, Please change the script name in above command.
 
 ## Ablations
      
