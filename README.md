@@ -3,7 +3,7 @@
 
 In this work we showed that despite the recent popularity of LLMs in time series forecasting (TSF) they do not appear to meaningfully improve performance. A simple baseline, "PAttn," was proposed, which outperformed most LLM-based TSF models.
 
-Authors:[Mingtian Tan](https://www.linkedin.com/in/mingtian-tan-822a182a3/),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
+Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
 
 ## Overview 💁🏼
 A great deal of recent work in time series analysis has focused on adapting **pretrained large language models (LLMs)** to forecast, classify, and detect anomalies in time series. These papers posit that language models, being advanced models for sequential dependencies in text, may generalize to the sequential dependencies in time series data. This hypothesis is unsurprising given the popularity of language models in machine learning research writ large.
@@ -14,14 +14,13 @@ After a series of ablation studies on three recent and popular LLM-based time se
 
 ![Ablations/PAttn](pic/ablations.png)
 
-
 Our goal is not to imply that language models will never be useful for time series. In fact, recent works point to many exciting and promising ways that language and time series interact, like [time series reasoning](https://github.com/behavioral-data/TSandLanguage) and [social understanding](https://github.com/chengjunyan1/SocioDojo).
 
 ## Dataset 📖
 You can access the well pre-processed datasets from [Google Drive](https://drive.google.com/file/d/1NF7VEefXCmXuWNbnNe858WvQAkJ_7wuP/view), then place the downloaded contents under ./dataset
 
 ## Setup 🔧
-Three different popular LLM-based TSF methods were included in our ablation approach. You might want to follow the corresponding repos, [OneFitsAll](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All), [Time-LLM](https://github.com/KimMeen/Time-LLM), and [CALF](https://github.com/Hank0626/CALF), to set up the environment respectivly. For the ''PAttn'' method, the environment from any of the above repos is compatible.
+Three different popular LLM-based TSF methods were included in our ablation approach. You might want to follow the corresponding repos, [OneFitsAll](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All), [Time-LLM](https://github.com/KimMeen/Time-LLM), and [CALF](https://github.com/Hank0626/CALF), to set up the environment respectivly. For the **''PAttn''** method, the environment from any of the above repos is compatible.
 
 
 ## PAttn: 
@@ -61,7 +60,7 @@ Three different popular LLM-based TSF methods were included in our ablation appr
      bash ./scripts/train_script/TimeLLM_Weather.sh
      (For other datasets, such as Weather)
 
-#### (To run ablations on other datasets, please change the name as shown in example.)
+#### (To run ablations on other datasets, please change the dataset name as shown in example.)
 
      
 
