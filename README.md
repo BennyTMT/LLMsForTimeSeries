@@ -5,7 +5,7 @@ In this work we showed that despite the recent popularity of LLMs in time series
 
 Authors:[Mingtian Tan](https://www.linkedin.com/in/mingtian-tan-822a182a3/),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
 
-## Overview
+## Overview 💁🏼
 A great deal of recent work in time series analysis has focused on adapting **pretrained large language models (LLMs)** to forecast, classify, and detect anomalies in time series. These papers posit that language models, being advanced models for sequential dependencies in text, may generalize to the sequential dependencies in time series data. This hypothesis is unsurprising given the popularity of language models in machine learning research writ large.
 However, direct connections between language modeling and time series forecasting remain largely undefined.
 To what extent is language modeling **really** beneficial for traditional time series tasks? 
