@@ -17,7 +17,7 @@ After a series of ablation studies on three recent and popular LLM-based time se
 Our goal is not to imply that language models will never be useful for time series. In fact, recent works point to many exciting and promising ways that language and time series interact, like [time series reasoning](https://github.com/behavioral-data/TSandLanguage) and [social understanding](https://github.com/chengjunyan1/SocioDojo).
 
 ## Dataset 📖
-You can access the well pre-processed datasets from [Google Drive](https://drive.google.com/file/d/1NF7VEefXCmXuWNbnNe858WvQAkJ_7wuP/view), then place the downloaded contents under ./dataset
+You can access the well pre-processed datasets from [Google Drive](https://drive.google.com/file/d/1NF7VEefXCmXuWNbnNe858WvQAkJ_7wuP/view), then place the downloaded contents under ./datasets
 
 ## Setup 🔧
 Three different popular LLM-based TSF methods were included in our ablation approach. You might want to follow the corresponding repos, [OneFitsAll](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All), [Time-LLM](https://github.com/KimMeen/Time-LLM), and [CALF](https://github.com/Hank0626/CALF), to set up the environment respectivly. For the **''PAttn''** method, the environment from any of the above repos is compatible.
@@ -62,4 +62,13 @@ Three different popular LLM-based TSF methods were included in our ablation appr
 #### (To run ablations on other datasets, please change the dataset name as shown in example.)
 
      
-
+## Citation
+If you find our work useful, please cite:
+```bibtex
+@article{tan2024useful,
+  title={Are Language Models Actually Useful for Time Series Forecasting?},
+  author={Tan, Mingtian and Merrill, Mike A. and Gupta, Vinayak and Althoff, Tim and Hartvigsen, Thomas},
+  conference={NeurIPS 2024},
+  url={https://arxiv.org/pdf/2406.16964},
+  year={2024}
+}
