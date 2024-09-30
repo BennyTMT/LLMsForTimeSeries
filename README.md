@@ -69,13 +69,10 @@ This codebase is built based on the [Time-Series-Library](https://github.com/thu
 ## Citation
 If you find our work useful, please cite:
 ```bibtex
-@misc{tan2024languagemodelsactuallyuseful,
-      title={Are Language Models Actually Useful for Time Series Forecasting?}, 
-      author={Mingtian Tan and Mike A. Merrill and Vinayak Gupta and Tim Althoff and Thomas Hartvigsen},
-      year={2024},
-      eprint={2406.16964},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2406.16964}, 
+@article{tan2024language,
+  title={Are Language Models Actually Useful for Time Series Forecasting?},
+  author={Tan, Mingtian and Merrill, Mike A and Gupta, Vinayak and Althoff, Tim and Hartvigsen, Thomas},
+  journal={arXiv preprint arXiv:2406.16964},
+  year={2024}
 }
 
