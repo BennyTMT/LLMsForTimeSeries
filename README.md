@@ -3,9 +3,10 @@
 
 In this work we showed that despite the recent popularity of LLMs in time series forecasting (TSF) they do not appear to meaningfully improve performance. A simple baseline, "PAttn," was proposed, which outperformed most LLM-based TSF models. 
 
-**Please Note that Our position is not to avoid using LLMs for time series tasks; LLMs have great potential in using text to assist with time series reasoning.**
-
 Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
+
+**Finally, in this paper, We still advocate exploring LLMs for time series tasks, as LLMs show significant potential in using text to assist with time series reasoning.**
+
 
 ## Overview 💁🏼
 A great deal of recent work in time series analysis has focused on adapting **pretrained large language models (LLMs)** to forecast, classify, and detect anomalies in time series. These papers posit that language models, being advanced models for sequential dependencies in text, may generalize to the sequential dependencies in time series data. This hypothesis is unsurprising given the popularity of language models in machine learning research writ large.
