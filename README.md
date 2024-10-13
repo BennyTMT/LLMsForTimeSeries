@@ -1,7 +1,9 @@
 # Are Language Models Actually Useful for Time Series Forecasting?
 [Papar Link](https://arxiv.org/pdf/2406.16964) (NeurIPS 2024 Spotlight 🌟)
 
-In this work we showed that despite the recent popularity of LLMs in time series forecasting (TSF) they do not appear to meaningfully improve performance. A simple baseline, "PAttn," was proposed, which outperformed most LLM-based TSF models. **Our position is not to avoid using LLMs for time series tasks; LLMs have great potential in using text to assist with time series reasoning.**
+In this work we showed that despite the recent popularity of LLMs in time series forecasting (TSF) they do not appear to meaningfully improve performance. A simple baseline, "PAttn," was proposed, which outperformed most LLM-based TSF models. 
+
+**Please Note that Our position is not to avoid using LLMs for time series tasks; LLMs have great potential in using text to assist with time series reasoning.**
 
 Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
 
