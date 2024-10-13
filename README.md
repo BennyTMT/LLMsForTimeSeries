@@ -45,10 +45,10 @@ Three different popular LLM-based TSF methods were included in our ablation appr
 
 #### Run Ablations on OneFitsAll (ETT) :
      cd ./OFA
-     bash ./scripts/ETTh_GPT2.sh   
-     bash ./scripts/ETTm_GPT2.sh
+     bash ./script/ETTh_GPT2.sh   
+     bash ./script/ETTm_GPT2.sh
 
-     bash ./scripts/illness.sh 
+     bash ./script/illness.sh 
      (For other datasets, such as illness)
 
 #### Run Ablations on  Time-LLM (ETT) 
