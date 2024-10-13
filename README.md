@@ -67,7 +67,7 @@ This codebase is built based on the [Time-Series-Library](https://github.com/thu
 
 
 ## Citation
-If you find our work useful, please cite:
+If you find our work useful, please kindly cite our work as follows:
 ```bibtex
 @article{tan2024language,
   title={Are Language Models Actually Useful for Time Series Forecasting?},
