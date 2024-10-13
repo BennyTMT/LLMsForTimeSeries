@@ -2,10 +2,11 @@
 [Papar Link](https://arxiv.org/pdf/2406.16964) (NeurIPS 2024 Spotlight 🌟)
 
 In this work we showed that despite the recent popularity of LLMs in time series forecasting (TSF) they do not appear to meaningfully improve performance. A simple baseline, "PAttn," was proposed, which outperformed most LLM-based TSF models. 
+Finally, in this paper, We still advocate exploring LLMs for time series tasks, for example, **LLMs show great potential in reasoning time series with text.**
+
 
 Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
 
-**Finally, in this paper, We still advocate exploring LLMs for time series tasks, as LLMs show significant potential in using text to assist with time series reasoning.**
 
 
 ## Overview 💁🏼
