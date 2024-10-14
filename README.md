@@ -3,7 +3,7 @@
 
 In this work we showed that despite the recent popularity of LLMs in **time series forecasting (TSF)** they do not appear to meaningfully improve performance. A simple baseline, "PAttn," was proposed, which outperformed most LLM-based TSF models. 
 
-Finally, in this paper, We still advocate exploring LLMs for time series tasks, for example, **LLMs show great potential in reasoning time series with text.** You may refer to this [time series reasoning work](https://github.com/behavioral-data/TSandLanguage/tree/main/text_aid_forecast).
+Nevertheless, we do not deny the great potential of LLMs in time series, for example, **LLMs are promising in reasoning time series with text.** You may refer to this [time series reasoning work](https://github.com/behavioral-data/TSandLanguage/tree/main/text_aid_forecast).
 
 
 Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
