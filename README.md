@@ -11,11 +11,9 @@ Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikem
 
 
 ## Overview 💁🏼
-A great deal of recent work in time series analysis has focused on adapting **pretrained large language models (LLMs)** to forecast, classify, and detect anomalies in time series. These papers posit that language models, being advanced models for sequential dependencies in text, may generalize to the sequential dependencies in time series data. This hypothesis is unsurprising given the popularity of language models in machine learning research writ large.
-However, direct connections between language modeling and time series forecasting remain largely undefined.
-To what extent is language modeling **really** beneficial for traditional time series tasks? 
+Recent work in time series analysis has increasingly focused on adapting pretrained large language models (LLMs) for forecasting (TSF), classification, and anomaly detection. These studies suggest that language models, designed for sequential dependencies in text, could generalize to time series data. While this idea aligns with the popularity of language models in machine learning, direct connections between language modeling and TSF remain unclear. **How beneficial are language models for traditional TSF task?**
 
-After a series of ablation studies on three recent and popular LLM-based time series forecasting methods, we find that **removing the LLM component or replacing it with a basic attention layer** does not degrade the forecasting results---in most cases the results even improved. Additionally, we proposed **PAttn**, demonstrating that patching and attention structures perform comparably to state-of-the-art LLM-based forecasters.
+Through a series of ablation studies on three recent LLM-based time series forecasting methods, we found that **removing the LLM component or replacing it with a simple attention layer did not worsen results—in many cases**, it even led to improvements. Additionally, we introduced PAttn, showing that patching and attention structures can perform as well as state-of-the-art LLM-based forecasters.
 
 ![Ablations/PAttn](pic/ablations.png)
 
