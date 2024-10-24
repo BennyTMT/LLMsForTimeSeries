@@ -13,7 +13,7 @@ Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikem
 ## Overview 💁🏼
 Recent work in time series analysis has increasingly focused on adapting pretrained large language models (LLMs) for **forecasting (TSF)**, classification, and anomaly detection. These studies suggest that language models, designed for sequential dependencies in text, could generalize to time series data. While this idea aligns with the popularity of language models in machine learning, direct connections between language modeling and TSF remain unclear. **How beneficial are language models for traditional TSF task?**
 
-Through a series of ablation studies on three recent **LLM-based TSF** methods, we found that **removing the LLM component or replacing it with a simple attention layer did not worsen results—in many cases**, it even led to improvements. Additionally, we introduced PAttn, showing that patching and attention structures can perform as well as state-of-the-art LLM-based forecasters.
+Through a series of ablation studies on three recent **LLM-based TSF** methods, we found that **removing the LLM component or replacing it with a simple attention layer did not worsen results—in many cases, it even led to improvements.** Additionally, we introduced PAttn, showing that patching and attention structures can perform as well as state-of-the-art LLM-based forecasters.
 
 ![Ablations/PAttn](pic/ablations.png)
 
