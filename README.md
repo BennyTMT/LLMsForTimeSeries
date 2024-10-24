@@ -17,7 +17,7 @@ Through a series of ablation studies on three recent **LLM-based TSF** methods, 
 
 ![Ablations/PAttn](pic/ablations.png)
 
-The main difference between **PAttn** and [PatchTST](https://github.com/yuqinie98/PatchTST) is that we gradually removed parts of the Transformer module that may not be as essential, and Position Embedding. When [DLinear](https://github.com/cure-lab/LTSF-Linear) has been surpassed by many new methods, we aim to provide a method that is both simple and effective, serving as a simple baseline.
+The main difference between **PAttn** and [PatchTST](https://github.com/yuqinie98/PatchTST) is that we gradually removed parts of the Transformer module that may not be as essential, and Position Embedding. When [DLinear](https://github.com/cure-lab/LTSF-Linear) has been surpassed by new methods, we aim to provide a method that is both simple and effective, serving as a simple baseline.
 
 ## Dataset 📖
 You can access the well pre-processed datasets from [Google Drive](https://drive.google.com/file/d/1NF7VEefXCmXuWNbnNe858WvQAkJ_7wuP/view), then place the downloaded contents under ./datasets
