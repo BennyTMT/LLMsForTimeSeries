@@ -11,13 +11,13 @@ Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikem
 
 
 ## Overview 💁🏼
-Recent work in time series analysis has increasingly focused on adapting pretrained large language models (LLMs) for forecasting (TSF), classification, and anomaly detection. These studies suggest that language models, designed for sequential dependencies in text, could generalize to time series data. While this idea aligns with the popularity of language models in machine learning, direct connections between language modeling and TSF remain unclear. **How beneficial are language models for traditional TSF task?**
+Recent work in time series analysis has increasingly focused on adapting pretrained large language models (LLMs) for **forecasting (TSF)**, classification, and anomaly detection. These studies suggest that language models, designed for sequential dependencies in text, could generalize to time series data. While this idea aligns with the popularity of language models in machine learning, direct connections between language modeling and TSF remain unclear. **How beneficial are language models for traditional TSF task?**
 
-Through a series of ablation studies on three recent LLM-based time series forecasting methods, we found that **removing the LLM component or replacing it with a simple attention layer did not worsen results—in many cases**, it even led to improvements. Additionally, we introduced PAttn, showing that patching and attention structures can perform as well as state-of-the-art LLM-based forecasters.
+Through a series of ablation studies on three recent **LLM-based TSF** methods, we found that **removing the LLM component or replacing it with a simple attention layer did not worsen results—in many cases**, it even led to improvements. Additionally, we introduced PAttn, showing that patching and attention structures can perform as well as state-of-the-art LLM-based forecasters.
 
 ![Ablations/PAttn](pic/ablations.png)
 
-Our goal is not to imply that language models will never be useful for time series. In fact, recent works point to many exciting and promising ways that language and time series interact, like [time series reasoning](https://github.com/behavioral-data/TSandLanguage) and [social understanding](https://github.com/chengjunyan1/SocioDojo).
+The main difference between **PAttn** and [PatchTST](https://github.com/yuqinie98/PatchTST) is that we gradually removed parts of the Transformer module that may not be as essential, and Position Embedding. [DLinear](https://github.com/cure-lab/LTSF-Linear) has been surpassed by many new methods. We aim to provide a method that is both simple and effective, helping new TSF models to evaluate the trade-off between cost and performance.
 
 ## Dataset 📖
 You can access the well pre-processed datasets from [Google Drive](https://drive.google.com/file/d/1NF7VEefXCmXuWNbnNe858WvQAkJ_7wuP/view), then place the downloaded contents under ./datasets
