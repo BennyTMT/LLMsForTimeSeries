@@ -72,10 +72,10 @@ This codebase is built based on the [Time-Series-Library](https://github.com/thu
 ## Citation
 If you find our work useful, please kindly cite our work as follows:
 ```bibtex
-@article{tan2024language,
-  title={Are Language Models Actually Useful for Time Series Forecasting?},
-  author={Tan, Mingtian and Merrill, Mike A and Gupta, Vinayak and Althoff, Tim and Hartvigsen, Thomas},
-  journal={arXiv preprint arXiv:2406.16964},
-  year={2024}
+@inproceedings{tan2024language,
+    title={Are Language Models Actually Useful for Time Series Forecasting?},
+    author={Tan, Mingtian and Merrill, Mike A and Gupta, Vinayak and Althoff, Tim and Hartvigsen, Thomas},
+    booktitle={Neural Information Processing Systems (NeurIPS)},
+    year={2024}
 }
 
