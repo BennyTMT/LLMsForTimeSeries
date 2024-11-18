@@ -24,7 +24,7 @@ You can access the well pre-processed datasets from [Google Drive](https://drive
 Three different popular LLM-based TSF methods were included in our ablation approach. You might want to follow the corresponding repos, [OneFitsAll](https://github.com/DAMO-DI-ML/NeurIPS2023-One-Fits-All), [Time-LLM](https://github.com/KimMeen/Time-LLM), and [CALF](https://github.com/Hank0626/CALF), to set up the environment respectivly. For the **''PAttn''** method, the environment from any of the above repos is compatible.
 
 
-## PAttn: 
+## PAttn 🤔
 The main difference between **PAttn** and [PatchTST](https://github.com/yuqinie98/PatchTST) is that we gradually removed parts of the Transformer module that may not be as essential, and Position Embedding. When [DLinear](https://github.com/cure-lab/LTSF-Linear) has been surpassed by new methods, we aim to provide a method that is both simple and effective, serving as a simple baseline.
 
      cd ./PAttn 
