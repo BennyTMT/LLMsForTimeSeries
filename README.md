@@ -1,9 +1,10 @@
 # Are Language Models Actually Useful for Time Series Forecasting? (NeurIPS 2024 Spotlight)
-🌟 [Papar Link](https://arxiv.org/pdf/2406.16964) 
+
+🌟 [Papar Link](https://arxiv.org/pdf/2406.16964) Note that the language models mentioned in this paper are non-autoregressive. AR LLMs has great potential to incorporate textual reasoning (forecasting) future time series. 
 
 In this work we showed that despite the recent popularity of LLMs in **time series forecasting (TSF)** they do not appear to meaningfully improve performance. A simple baseline, "PAttn," was proposed, which outperformed most LLM-based TSF models. 
 
-Nevertheless, we do not deny the significant potential of LLMs in time series, **especially in reasoning about time series through text**. You may refer to this [time series reasoning work](https://github.com/behavioral-data/TSandLanguage/tree/main/text_aid_forecast).
+**For reasoning (forecasting) time series through text**. You may refer to this [time series reasoning work](https://github.com/behavioral-data/TSandLanguage/tree/main/text_aid_forecast).
 
 
 Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
