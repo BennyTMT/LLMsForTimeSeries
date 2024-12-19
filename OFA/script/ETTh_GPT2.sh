@@ -78,7 +78,7 @@ python $run_file \
     --pred_len $pred_len \
     --batch_size 256 \
     --decay_fac 0.5 \
-    --learning_rate 256 \
+    --learning_rate $lr \
     --train_epochs 10 \
     --d_model 768 \
     --n_heads 4 \
