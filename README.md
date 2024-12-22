@@ -9,7 +9,7 @@ For reasoning (forecasting) time series through text. You may refer to this [tim
 
 Authors: [Mingtian Tan](https://x.com/MTTan1203),[Mike A. Merrill](https://mikemerrill.io/),[Vinayak Gupta](https://gvinayak.github.io/),[Tim Althoff](https://homes.cs.washington.edu/~althoff/),[Thomas Hartvigsen](https://www.tomhartvigsen.com/)
 
-### Autoregressive LLMs hold great potential for leveraging context to reason (forecast) future time series. Time Series Forecasting Models mentioned in this paper are Non-Autoregressive.
+### Autoregressive LLMs hold great potential for leveraging context to reason (forecast) future time series. Time Series Forecasting Models mentioned in this paper are Not.
 
 
 ## Overview 💁🏼
