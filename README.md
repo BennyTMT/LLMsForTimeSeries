@@ -1,6 +1,6 @@
 # Are Language Models Actually Useful for Time Series Forecasting? (NeurIPS 2024 Spotlight)
 
-## Autoregressive LLMs hold great potential for leveraging context to reason (forecast) future time series.** Time Series Language Models mentioned in this paper are **Non-Autoregressive.** 🌟 [Papar Link](https://arxiv.org/pdf/2406.16964) 
+## Autoregressive LLMs hold great potential for leveraging context to reason (forecast) future time series. Time Series Language Models mentioned in this paper are Non-Autoregressive.🌟 [Papar Link](https://arxiv.org/pdf/2406.16964) 
 
 In this work we showed that despite the recent popularity of LLMs in time series forecasting (TSF) they do not appear to meaningfully improve performance. A simple baseline, "PAttn," was proposed, which outperformed most LLM-based TSF models. 
 
