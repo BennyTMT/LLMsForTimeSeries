@@ -441,15 +441,11 @@ def test(model, test_data, test_loader, args, device, itr):
             batch_x = batch_x.float().to(device)
             batch_y = batch_y.float().to(device)
             
-            outputs = model(batch_x[:, -args.seq_len:, :])
-            
-            # encoder - decoder
-            outputs = outputs[:, -args.pred_len:, :]
-            batch_y = batch_y[:, -args.pred_len:, :].to(device)
+            outputs = model(batch_x)
 
             pred = outputs.detach().cpu().numpy()
             true = batch_y.detach().cpu().numpy()
-            prev = batch_x[:, -args.seq_len:, :].cpu().numpy()
+            prev = batch_x.cpu().numpy()
             
             preds.append(pred)
             trues.append(true)
