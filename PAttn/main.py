@@ -177,7 +177,7 @@ for ii in range(args.itr):
         for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in tqdm(enumerate(train_loader)):
             
             if is_first : 
-                # torch.Size([512, 7, 96]) torch.Size([512, 7, 96])
+                # [batch size, dim , input_len] & [batch size, dim , pred_len ] 
                 print(args.data_path, batch_x.shape  , batch_y.shape)
                 is_first=False
                 
