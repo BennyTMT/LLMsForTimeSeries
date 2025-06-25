@@ -1,4 +1,4 @@
-torch==2.2.2
+torch==2.6.0
 accelerate==0.28.0
 einops==0.7.0
 matplotlib==3.7.0
